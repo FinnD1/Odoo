@@ -1,0 +1,121 @@
+<odoo>
+    <data>
+        <!-- Create tree view on Course -->
+        <record id='openacademy_course_tree_view' model='ir.ui.view'>
+            <field name='name'>Courses Tree</field>
+            <field name='model'>openacademy.course</field>
+            <field name='arch' type='xml'>
+                <tree string='Course Tree'>
+                    <field name='title'/>
+                    <field name='description'/>
+                    <field name='responsible_id'/>
+                    <field name='session_id'/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- create form on Course -->
+        <record id='openacademy_couse_form_view' model='ir.ui.view'>
+            <field name='name'>Courses Form</field>
+            <field name='model'>openacademy.course</field>
+            <field name='arch' type='xml'>
+                <form string='Course Form'>
+                    <sheet>
+                        <group>
+                            <field name='title'/>
+                        </group>
+                        <group>
+                            <notebook>
+                                <page>
+                                    <field name='description'/>
+                                </page>
+                            </notebook>
+                        </group>
+                        <group>
+                            <field name='responsible_id'/>
+                            <field name='session_id'/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- create tree view on session -->
+        <record id='openacademy_session_tree_view' model='ir.ui.view'>
+            <field name='name'>Session Tree</field>
+            <field name='model'>openacademy.session</field>
+            <field name='arch' type='xml'>
+                <tree name='Session Tree'>
+                    <field name='name'/>
+                    <field name='start_date'/>
+                    <field name='duration'/>
+                    <field name='number_of_seats'/>
+                    <field name='instructor_id'/>
+                    <field name='course_id'/>
+                    <field name='attendee_ids'/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- create form on Session -->
+        <record id='openacademy_session_form_view' model='ir.ui.view'>
+            <field name='name'>Session Form</field>
+            <field name='model'>openacademy.session</field>
+            <field name='arch' type='xml'>
+                <form name='Session Tree'>
+                    <sheet>
+                        <group>
+                            <field name='name'/>
+                            <field name='start_date'/>
+                            <field name='duration'/>
+                            <field name='number_of_seats'/>
+                            <field name='instructor_id'/>
+                            <field name='course_id'/>
+                            <field name='attendee_ids'/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- create search form -->
+        <record id='openacademy_couse_search' model='ir.ui.view'>
+            <field name='name'>Courses Search</field>
+            <field name='model'>openacademy.course</field>
+            <field name='arch' type='xml'>
+                <search string='Course Search'>
+                    <field name='title'/>
+                    <field name='description'/>
+                    <!-- Chuaw lam dc Domain -->
+                    <!-- <field name='name' string='Odoo' filter_domain='[('name','ilike',self)]'/>
+                    <field name='description' string='Description' filter_domain='[('description','ilike',self)]'/> -->
+                </search>
+            </field>
+        </record>
+
+        <!-- action  open course view in models -->
+        <record model="ir.actions.act_window" id="openacademy_course_action">
+            <field name="name">Courses</field>
+            <field name="res_model">openacademy.course</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- action open session view on models -->
+        <record id="openacademy_session_action" model="ir.actions.act_window">
+            <field name="name">Session</field>
+            <field name="res_model">openacademy.session</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Top menu item -->
+        <menuitem id="openacademy_menu_root" name="OpenAcademy" sequence="10"/>
+
+        <!-- menu categories( danh sach cac menu) -->
+        <menuitem id="openacademy_menu" parent="openacademy_menu_root" name="Academy" sequence="10"/>
+        <!-- menu thu1 -->
+        <menuitem id="openacademy_menu_courses" parent="openacademy_menu" name="Courses" sequence="10" action="openacademy_course_action"/>
+
+        <!-- menu thu 2 -->
+        <menuitem id="openacademy_menu_session" parent="openacademy_menu" name="Session" sequence="10" action="openacademy_session_action"/>
+    </data>
+</odoo>
